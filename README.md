@@ -1,11 +1,11 @@
-Here's an updated README.md template that includes more detailed installation instructions and a comprehensive table of files and their results:
 
 ```markdown
-# ANN MNIST from Scratch
+
+#ANN MNIST from Scratch
 
 This repository contains a simple implementation of an Artificial Neural Network (ANN) to classify the MNIST dataset using NumPy. It includes two different neural network architectures and their performance metrics.
 
-## Installation Instructions
+##Installation Instructions
 
 To get started with this project, follow these steps:
 
