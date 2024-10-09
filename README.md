@@ -1,11 +1,8 @@
-
-```markdown
-
-#ANN MNIST from Scratch
+# ANN MNIST from Scratch
 
 This repository contains a simple implementation of an Artificial Neural Network (ANN) to classify the MNIST dataset using NumPy. It includes two different neural network architectures and their performance metrics.
 
-##Installation Instructions
+## Installation Instructions
 
 To get started with this project, follow these steps:
 
@@ -47,17 +44,11 @@ To get started with this project, follow these steps:
 | `show_img.py`      | Loads and visualizes a few images from the dataset along with their labels.                     | Displays the first 5 images with their corresponding labels.                                |
 | `sklearn_model.py` | Uses sklearn's `MLPClassifier` to implement two neural network architectures and evaluates them.| - Accuracy with 1 hidden layer: 99.23% <br> - Accuracy with 3 hidden layers: 99.23%         |
 
+
 ## Conclusion
 
 This project demonstrates a basic ANN implementation and showcases how different architectures can achieve high accuracy on the MNIST dataset. You can experiment with different parameters, architectures, and datasets to further enhance your understanding of neural networks.
 
-Feel free to contribute to this project by opening issues or submitting pull requests!
 
-```
 
-### Changes Made:
-- Enhanced the installation instructions for clarity and detail.
-- Expanded the table with more specific results for each file.
-- Included a brief conclusion for better context.
 
-Feel free to customize it further or let me know if you want more adjustments!
