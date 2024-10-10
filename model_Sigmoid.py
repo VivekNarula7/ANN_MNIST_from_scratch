@@ -9,16 +9,15 @@ class NeuralNetwork:
         self.weights = []
         self.biases = []
         
-        # Initialize weights and biases using He initialization
         for i in range(1, len(layers)):
             self.weights.append(np.random.randn(layers[i-1], layers[i]) * np.sqrt(2. / layers[i-1]))
             self.biases.append(np.zeros((1, layers[i])))
 
-    def relu(self, z):
-        return np.maximum(0, z)
+    def sigmoid(self, z):
+        return 1 / (1 + np.exp(-z))
 
-    def relu_derivative(self, z):
-        return np.where(z > 0, 1, 0)
+    def sigmoid_derivative(self, z):
+        return z * (1 - z)
 
     def softmax(self, z):
         exp_z = np.exp(z - np.max(z, axis=1, keepdims=True))
@@ -28,7 +27,7 @@ class NeuralNetwork:
         self.activations = [X]
         z = X
         for i in range(len(self.weights) - 1):
-            z = self.relu(np.dot(z, self.weights[i]) + self.biases[i])
+            z = self.sigmoid(np.dot(z, self.weights[i]) + self.biases[i])
             self.activations.append(z)
         
         z = np.dot(z, self.weights[-1]) + self.biases[-1]
@@ -49,7 +48,7 @@ class NeuralNetwork:
         
         error = np.dot(error, self.weights[-1].T)
         for i in reversed(range(len(self.weights) - 1)):
-            delta = error * self.relu_derivative(self.activations[i + 1])
+            delta = error * self.sigmoid_derivative(self.activations[i + 1])
             weight_gradients[i] = np.dot(self.activations[i].T, delta) / m
             bias_gradients[i] = np.sum(delta, axis=0, keepdims=True) / m
             error = np.dot(delta, self.weights[i].T)
@@ -137,21 +136,21 @@ def plot_metrics(train_losses, test_losses, train_accuracies, test_accuracies, s
 # Example Usage
 if __name__ == '__main__':
     # One-hot encode labels for softmax output
-    nn1 = NeuralNetwork([X_train.shape[1], 100, 2])  # Assuming X_train has 784 features
+    nn1 = NeuralNetwork([784, 100, 2])
     Y_train_onehot = nn1.one_hot_encode(Y_train, num_classes=2)
 
     # Train the neural network (1 hidden layer)
     train_losses_1, test_losses_1, train_accuracies_1, test_accuracies_1 = nn1.train(
-        X_train, Y_train_onehot, X_test, Y_test, epochs=500, learning_rate=0.01
+        X_train, Y_train_onehot, X_test, Y_test, epochs=500, learning_rate=0.1
     )
 
     # Plot and save the metrics for the first network
     plot_metrics(train_losses_1, test_losses_1, train_accuracies_1, test_accuracies_1, filename='nn_1_hidden_layer_metrics_sigmoid')
 
     # Train another neural network with different architecture (3 hidden layers)
-    nn2 = NeuralNetwork([X_train.shape[1], 100, 50, 50, 2])  # Assuming X_train has 784 features
+    nn2 = NeuralNetwork([784, 100, 50, 50, 2])
     train_losses_2, test_losses_2, train_accuracies_2, test_accuracies_2 = nn2.train(
-        X_train, Y_train_onehot, X_test, Y_test, epochs=500, learning_rate=0.01
+        X_train, Y_train_onehot, X_test, Y_test, epochs=500, learning_rate=0.1
     )
 
     # Plot and save the metrics for the second network
