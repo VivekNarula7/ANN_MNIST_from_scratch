@@ -1,6 +1,3 @@
-Thank you for clarifying the structure of your files. Based on your updated information, here’s the revised README file that accurately reflects the current organization of your project:
-
-```markdown
 # ANN MNIST from Scratch
 
 This repository contains implementations of Artificial Neural Networks (ANNs) to classify the MNIST dataset using different approaches: a custom implementation using NumPy and a model using Scikit-learn. It includes various architectures with different activation functions and evaluates their performance metrics.
