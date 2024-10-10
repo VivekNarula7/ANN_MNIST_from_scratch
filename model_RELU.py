@@ -153,7 +153,6 @@ def plot_metrics(train_losses, test_losses, train_accuracies, test_accuracies, s
     plt.savefig(f"{save_path}/{filename}.png")
     plt.show()
 
-# Example Usage
 if __name__ == '__main__':
     # Train and evaluate the first neural network (1 hidden layer)
     nn1 = NeuralNetwork([X_train.shape[1], 100, 2])
@@ -161,17 +160,17 @@ if __name__ == '__main__':
 
     # Train the model, save the best model
     train_losses_1, test_losses_1, train_accuracies_1, test_accuracies_1 = nn1.train(
-        X_train, Y_train_onehot, X_test, Y_test, epochs=201, learning_rate=0.01, save_path='models/best_model_1_hidden.pkl'
+        X_train, Y_train_onehot, X_test, Y_test, epochs=201, learning_rate=0.01, save_path='models/best_model_1_hidden_RELU.pkl'
     )
 
     # Load the best weights before prediction
-    nn1.load_weights('models/best_model_1_hidden.pkl')
+    nn1.load_weights('models/best_model_1_hidden_RELU.pkl')
 
     # Predict with the best model (1 hidden layer)
     predictions_1 = nn1.predict(X_test)
 
-    # Compute accuracy for the 1-hidden-layer model
-    accuracy_1 = nn1.compute_accuracy(Y_test, nn1.feedforward(X_test))
+    # Compute accuracy directly using predictions
+    accuracy_1 = np.mean(predictions_1 == Y_test)
     print(f"Accuracy of the best model with 1 hidden layer: {accuracy_1 * 100:.2f}%")
 
     # Plot and save the metrics for the first network
@@ -180,17 +179,17 @@ if __name__ == '__main__':
     # Train and evaluate the second neural network (3 hidden layers)
     nn2 = NeuralNetwork([X_train.shape[1], 100, 50, 50, 2])
     train_losses_2, test_losses_2, train_accuracies_2, test_accuracies_2 = nn2.train(
-        X_train, Y_train_onehot, X_test, Y_test, epochs=201, learning_rate=0.01, save_path='models/best_model_3_hidden.pkl'
+        X_train, Y_train_onehot, X_test, Y_test, epochs=201, learning_rate=0.01, save_path='models/best_model_3_hidden_RELU.pkl'
     )
 
     # Load the best weights before prediction
-    nn2.load_weights('models/best_model_3_hidden.pkl')
+    nn2.load_weights('models/best_model_3_hidden_RELU.pkl')
 
     # Predict with the best model (3 hidden layers)
     predictions_2 = nn2.predict(X_test)
 
-    # Compute accuracy for the 3-hidden-layer model
-    accuracy_2 = nn2.compute_accuracy(Y_test, nn2.feedforward(X_test))
+    # Compute accuracy directly using predictions
+    accuracy_2 = np.mean(predictions_2 == Y_test)
     print(f"Accuracy of the best model with 3 hidden layers: {accuracy_2 * 100:.2f}%")
 
     # Plot and save the metrics for the second network
