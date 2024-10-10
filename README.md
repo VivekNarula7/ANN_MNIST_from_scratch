@@ -37,9 +37,9 @@ To get started with this project, follow these steps:
    ```
 
 3. **Install Required Packages:**
-   You can install the necessary libraries using pip. Make sure to have `numpy`, `matplotlib`, `scikit-learn`, `h5py` and `pickle` installed:
+   You can install the necessary libraries using pip. Make sure to have `numpy`, `matplotlib`, `scikit-learn` and `h5py` installed:
    ```bash
-   pip install numpy matplotlib scikit-learn h5py pickle
+   pip install numpy matplotlib scikit-learn h5py 
    ```
 
 4. **Download the MNIST Dataset:**
