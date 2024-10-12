@@ -2,7 +2,7 @@ import numpy as np
 import h5py
 
 # Load dataset from the file path
-file_path = '/home/vivek/Code/ANN/ANN_MNIST_from_scratch/data/data.h5'
+file_path = 'data/data.h5'
 with h5py.File(file_path, 'r') as file:
     X = file['X'][:]  # Load the input data (images)
     Y = file['Y'][:]  # Load the labels
